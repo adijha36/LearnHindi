@@ -98,6 +98,6 @@ with col1:
 with col2:
     # Button to go to the next card
     if st.button("Next"):
-        if st.session_state.current_card < len(flashcards) - 1:
+        if st.session_state.current_card < len(filtered_flashcards) - 1:
             st.session_state.current_card += 1
         st.experimental_rerun()
