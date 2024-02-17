@@ -1,6 +1,16 @@
 import streamlit as st
 
+page_bg_img = '''
 
+<style>
+.stApp {
+  background-image: url("https://images.unsplash.com/photo-1657302156083-2e61fb23d161");
+  background-size: cover;
+}
+</style>
+'''
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Sample data: list of tuples with (question, answer)
 flashcards = [
@@ -53,7 +63,7 @@ flashcards = [
 
 # Allow the user to select a difficulty level
 difficulty_level = st.selectbox(
-    "Select the difficulty level:",
+    ":grey[**Select the difficulty level:**]",
     options=["Easy", "Medium", "Hard"],
     index=0  # Default to the first option, "Easy"
 )
@@ -68,11 +78,11 @@ if 'current_card' not in st.session_state:
 
     
 # Display the current question
-st.write(f"English: {filtered_flashcards[st.session_state.current_card]['question']}")
+st.write(f":grey[**English: {filtered_flashcards[st.session_state.current_card]['question']}**]")
 
 # Button to show the answer
 if st.button("Show Answer"):
-    st.write(f"Hindi: {filtered_flashcards[st.session_state.current_card]['answer']}")
+    st.write(f":grey[**Hindi: {filtered_flashcards[st.session_state.current_card]['answer']}**]")
 
 # Navigation buttons
 col1, col2 = st.columns(2)
