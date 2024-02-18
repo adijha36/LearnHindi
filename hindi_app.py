@@ -35,6 +35,8 @@ def text_to_speech(text):
     tts.save(f"temp/{my_file_name}.mp3")
     return my_file_name
 
+st.title("Hindi Flashcards! 📚")
+
 # Allow the user to select a difficulty level
 difficulty_level = st.selectbox(
     ":grey[**Select the difficulty level:**]",
