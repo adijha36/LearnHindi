@@ -1,10 +1,15 @@
 import streamlit as st
+from gtts import gTTS
+import glob
+import time
+import os
+from util.flashcards import get_flashcards
 
 page_bg_img = '''
 
 <style>
 .stApp {
-  background-image: url("https://images.unsplash.com/photo-1657302156083-2e61fb23d161");
+  background-image: url("https://images.unsplash.com/photo-1624139283061-adee53a59791");
   background-size: cover;
 }
 </style>
@@ -13,53 +18,17 @@ page_bg_img = '''
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Sample data: list of tuples with (question, answer)
-flashcards = [
-    {"question": "Hello", "answer": "Namaste", "difficulty": "Easy"},
-    {"question": "How are you?", "answer": "Aap kaise ho?", "difficulty": "Easy"},
-    {"question": "Thank you", "answer": "Dhanyawad", "difficulty": "Easy"},
-    {"question": "Yes", "answer": "Haan", "difficulty": "Easy"},
-    {"question": "No", "answer": "Nahi", "difficulty": "Easy"},
-    {"question": "Goodbye", "answer": "Alvida", "difficulty": "Easy"},
-    {"question": "Water", "answer": "Pani", "difficulty": "Easy"},
-    {"question": "Food", "answer": "Khana", "difficulty": "Easy"},
-    {"question": "How are you feeling?", "answer": "Aap kaisa mehsoos kar rahe hain?", "difficulty": "Medium"},
-    {"question": "I'm doing well, thank you", "answer": "Main theek hoon, dhanyavad", "difficulty": "Medium"},
-    {"question": "What are you doing today?", "answer": "Aap aaj kya kar rahe hain?", "difficulty": "Medium"},
-    {"question": "I'm going to the market", "answer": "Main bazaar ja rahi hoon", "difficulty": "Medium"},
-    {"question": "Where are you from?", "answer": "Aap kahan se hain?", "difficulty": "Medium"},
-    {"question": "I'm from the United States", "answer": "Main United States se hoon", "difficulty": "Medium"},
-    {"question": "What do you do for a living?", "answer": "Aap kya karte hain?", "difficulty": "Medium"},
-    {"question": "I'm a teacher", "answer": "Main ek shikshak hoon", "difficulty": "Medium"},
-    {"question": "Do you speak English?", "answer": "Kya aap Angrezi bolte hain?", "difficulty": "Medium"},
-    {"question": "A little bit", "answer": "Thoda bahut", "difficulty": "Medium"},
-    {"question": "What do you think of India?", "answer": "Aapko India ke baare mein kya lagta hai?", "difficulty": "Hard"},
-    {"question": "It's a beautiful country with a rich history", "answer": "Yeh ek sundar desh hai jiska itihas bahut aamir hai", "difficulty": "Hard"},
-    {"question": "What are your plans for the future?", "answer": "Aapke bhavishya ke liye kya yojana hai?", "difficulty": "Hard"},
-    {"question": "I'm not sure yet", "answer": "Mujhe abhi tak pata nahi", "difficulty": "Hard"},
-    {"question": "What is your biggest dream?", "answer": "Aapka sabse bada sapna kya hai?", "difficulty": "Hard"},
-    {"question": "To travel the world", "answer": "Duniya ghoomna", "difficulty": "Hard"},
-    {"question": "What is the meaning of life?", "answer": "Jeevan ka matlab kya hai?", "difficulty": "Hard"},
-    {"question": "That's a difficult question to answer", "answer": "Yeh jawab dena mushkil hai", "difficulty": "Hard"},
-    {"question": "What is your favorite thing about learning Hindi?", "answer": "Hindi seekhne ke baare mein aapka kya pasand hai?", "difficulty": "Hard"},
-    {"question": "Can you help me?", "answer": "Kya aap meri madad kar sakte hain?", "difficulty": "Easy"},
-    {"question": "What is your name?", "answer": "Aapka naam kya hai?", "difficulty": "Easy"},
-    {"question": "I need a doctor", "answer": "Mujhe ek doctor ki zarurat hai", "difficulty": "Easy"},
-    {"question": "I am lost", "answer": "Main kho gayi hoon", "difficulty": "Easy"},
-    {"question": "I love you", "answer": "Main tumse pyar karti hoon", "difficulty": "Easy"},
-    {"question": "I feel happy", "answer": "Mujhe khushi mehsoos ho rahi hai", "difficulty": "Medium"},
-    {"question": "What is the time?", "answer": "Samay kya hua hai?", "difficulty": "Medium"},
-    {"question": "Can you show me the way?", "answer": "Kya aap mujhe rasta dikha sakte hain?", "difficulty": "Medium"},
-    {"question": "I would like to order food", "answer": "Mujhe khana order karna hai", "difficulty": "Medium"},
-    {"question": "Where is the nearest ATM?", "answer": "Nikatam ATM kahan hai?", "difficulty": "Medium"},
-    {"question": "How much does it cost?", "answer": "Iska kya daam hai?", "difficulty": "Hard"},
-    {"question": "Can we have the bill, please?", "answer": "Kya hum bill le sakte hain, kripya?", "difficulty": "Hard"},
-    {"question": "I need to change money", "answer": "Mujhe paise badalne hain", "difficulty": "Hard"},
-    {"question": "Could you recommend a good restaurant?", "answer": "Kya aap ek achha restaurant suggest kar sakte hain?", "difficulty": "Hard"},
-    {"question": "I am allergic to nuts", "answer": "Mujhe nuts se allergy hai", "difficulty": "Hard"},
-    {"question": "Is there a hospital nearby?", "answer": "Kya yahan ke aas-paas ek hospital hai?", "difficulty": "Hard"},
-    {"question": "I would like a map of the city", "answer": "Mujhe shahar ka naksha chahiye", "difficulty": "Hard"},
-]
 
+flashcards = get_flashcards()
+
+def text_to_speech(text):
+    tts = gTTS(text, lang= "hi")
+    try:
+        my_file_name = text[0:20]
+    except:
+        my_file_name = "audio"
+    tts.save(f"temp/{my_file_name}.mp3")
+    return my_file_name
 
 # Allow the user to select a difficulty level
 difficulty_level = st.selectbox(
@@ -74,15 +43,34 @@ filtered_flashcards = [card for card in flashcards if card["difficulty"] == diff
 if 'current_card' not in st.session_state:
     st.session_state.current_card = 0  # Start with the first card
 
-
-
     
 # Display the current question
-st.write(f":grey[**English: {filtered_flashcards[st.session_state.current_card]['question']}**]")
+st.write(f":blue[**English:**] {filtered_flashcards[st.session_state.current_card]['question']}")
 
 # Button to show the answer
 if st.button("Show Answer"):
-    st.write(f":grey[**Hindi: {filtered_flashcards[st.session_state.current_card]['answer']}**]")
+    st.write(f" :green[**Hindi:**] {filtered_flashcards[st.session_state.current_card]['answer']}")
+
+if st.button("Hear"):
+    result = text_to_speech(filtered_flashcards[st.session_state.current_card]['answer'])
+    audio_file = open(f"temp/{result}.mp3", "rb")
+    audio_bytes = audio_file.read()
+    st.markdown(f"## Your audio:")
+    st.audio(audio_bytes, format="audio/mp3", start_time=0)
+
+
+def remove_files(n):
+    mp3_files = glob.glob("temp/*mp3")
+    if len(mp3_files) != 0:
+        now = time.time()
+        n_days = n * 86400
+        for f in mp3_files:
+            if os.stat(f).st_mtime < now - n_days:
+                os.remove(f)
+                print("Deleted ", f)
+
+
+remove_files(7)
 
 # Navigation buttons
 col1, col2 = st.columns(2)
