@@ -17,6 +17,11 @@ page_bg_img = '''
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
+try:
+    os.mkdir("temp")
+except:
+    pass
+
 # Sample data: list of tuples with (question, answer)
 
 flashcards = get_flashcards()
