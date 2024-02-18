@@ -61,7 +61,7 @@ if st.button("Hear"):
     audio_file = open(f"temp/{result}.mp3", "rb")
     audio_bytes = audio_file.read()
     st.markdown(f"## Your audio:")
-    st.audio(audio_bytes, format="audio/mp3", start_time=0)
+    st.audio(audio_bytes, format="audio/mpeg", start_time=0)
 
 
 def remove_files(n):
