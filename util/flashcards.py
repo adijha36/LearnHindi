@@ -52,7 +52,7 @@ def get_flashcards():
         {"question": "Can I have some water?", "answer": "Kya mujhe thoda paani mil sakta hai?", "difficulty": "Medium"},
         {"question": "I'm shopping for clothes", "answer": "Main kapde khareed rahi hoon", "difficulty": "Medium"},
         {"question": "What's the weather like today?", "answer": "Aaj mausam kaisa hai?", "difficulty": "Medium"},
-        {"question": "I'm looking for a pharmacy", "answer": "Mujhe ek pharmacy dhoondh rahi hoon", "difficulty": "Medium"},
+        {"question": "I'm looking for a pharmacy", "answer": "Main ek pharmacy dhoondh rahi hoon", "difficulty": "Medium"},
         {"question": "Can you recommend a good book?", "answer": "Kya aap ek achhi kitab recommend kar sakte hain?", "difficulty": "Hard"},
         {"question": "I'd like to make a reservation", "answer": "Main ek reservation karna chahti hoon", "difficulty": "Hard"},
         {"question": "What are the must-visit places here?", "answer": "Yahaan ke must-visit sthaan kaun se hain?", "difficulty": "Hard"},
@@ -60,7 +60,26 @@ def get_flashcards():
         {"question": "How far is the city center?", "answer": "City center kitni door hai?", "difficulty": "Hard"},
         {"question": "I'm here on vacation", "answer": "Main yahaan chhuttiyon par hoon", "difficulty": "Hard"},
         {"question": "Is there a vegetarian option?", "answer": "Kya yahaan koi shakahari vikalp hai?", "difficulty": "Hard"},
-        {"question": "Could you take a picture of me?", "answer": "Kya aap meri ek tasveer le sakte hain?", "difficulty": "Hard"}
+        {"question": "Could you take a picture of me?", "answer": "Kya aap meri ek tasveer le sakte hain?", "difficulty": "Hard"},
+        {"question": "Is this spicy?", "answer": "Kya yeh teekha hai?", "difficulty": "Easy"},
+        {"question": "I'm vegetarian", "answer": "Main shakahari hoon", "difficulty": "Easy"},
+        {"question": "Where is the bathroom?", "answer": "Bathroom kahaan hai?", "difficulty": "Easy"},
+        {"question": "How do I connect to the Wi-Fi?", "answer": "Wi-Fi se kaise jude?", "difficulty": "Medium"},
+        {"question": "I would like to buy a SIM card", "answer": "Mujhe ek SIM card kharidna hai", "difficulty": "Medium"},
+        {"question": "What time does the store open?", "answer": "Dukaan kis samay khulti hai?", "difficulty": "Medium"},
+        {"question": "Can I get a discount?", "answer": "Kya mujhe chhoot mil sakti hai?", "difficulty": "Medium"},
+        {"question": "I need to go to the airport", "answer": "Mujhe hawai adda jaana hai", "difficulty": "Medium"},
+        {"question": "Do you have a menu in English?", "answer": "Kya aapke paas Angrezi mein menu hai?", "difficulty": "Medium"},
+        {"question": "I'm here for business", "answer": "Main yahaan business ke liye hoon", "difficulty": "Hard"},
+        {"question": "Can you suggest a good hotel?", "answer": "Kya aap ek achha hotel suggest kar sakte hain?", "difficulty": "Hard"},
+        {"question": "I have a reservation under the name...", "answer": "Mera reservation ... naam ke under hai", "difficulty": "Hard"},
+        {"question": "Where can I find a taxi?", "answer": "Mujhe taxi kahaan milegi?", "difficulty": "Hard"},
+        {"question": "Can you help me with the luggage?", "answer": "Kya aap mujhe samaan ke saath madad kar sakte hain?", "difficulty": "Hard"},
+        {"question": "I'd like to cancel my booking", "answer": "Main apni booking cancel karna chahti hoon", "difficulty": "Hard"},
+        {"question": "What local dishes do you recommend?", "answer": "Aap kaun se local dishes recommend karte hain?", "difficulty": "Hard"},
+        {"question": "Do you offer room service?", "answer": "Kya aap room service dete hain?", "difficulty": "Hard"},
+        {"question": "How do I get to the city center from here?", "answer": "Yahaan se main sheher ke centre tak kaise pahunchu?", "difficulty": "Hard"},
+        {"question": "I'd like to rent a car", "answer": "Main ek car kiraye par lena chahti hoon", "difficulty": "Hard"}
     ]
 
     return flashcards

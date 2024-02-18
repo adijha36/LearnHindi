@@ -4,6 +4,7 @@ import glob
 import time
 import os
 from util.flashcards import get_flashcards
+import numpy as np
 
 page_bg_img = '''
 
@@ -80,7 +81,7 @@ def remove_files(n):
 remove_files(7)
 
 # Navigation buttons
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 
 with col1:
@@ -95,4 +96,13 @@ with col2:
     if st.button("Next"):
         if st.session_state.current_card < len(filtered_flashcards) - 1:
             st.session_state.current_card += 1
+        st.experimental_rerun()
+
+with col3:
+    # Button to go to the next card
+    if st.button("Random"):
+        rand_num = np.random.randint(len(filtered_flashcards))
+        while rand_num == st.session_state.current_card:
+            rand_num = np.random.randint(len(filtered_flashcards))
+        st.session_state.current_card = rand_num
         st.experimental_rerun()
